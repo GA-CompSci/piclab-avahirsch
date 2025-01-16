@@ -222,9 +222,9 @@ public class Picture extends SimplePicture {
             //traverse collumns
             for(int collumn = 0; collumn<width; collumn++){
                 
-                pixels[row][collumn].setBlue(pixels[row][collumn].getBlue()*1/4);
-                pixels[row][collumn].setGreen(pixels[row][collumn].getGreen()*1/4);
-                pixels[row][collumn].setRed(pixels[row][collumn].getRed()*5/2);
+                pixels[row][collumn].setBlue(pixels[row][collumn].getBlue()*9/10);
+                pixels[row][collumn].setGreen(pixels[row][collumn].getGreen()*1/3);
+                pixels[row][collumn].setRed(pixels[row][collumn].getRed()*13/2);
                 } 
             }
 
