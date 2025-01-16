@@ -98,12 +98,22 @@ public class Picture extends SimplePicture {
 
 
         }
-    }
 
     /** Method to set the blue to 0 */
     public void zeroBlue() {
         Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                //zero out all the blue
+                pixels[row][collumn].setBlue(0);
 
+            }
+
+        }
     }
 
     /**
@@ -111,32 +121,92 @@ public class Picture extends SimplePicture {
      */
     public void keepOnlyBlue() {
         Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                //zero out all the blue
+                pixels[row][collumn].setRed(0);
+                pixels[row][collumn].setGreen(0);
+            }
 
+        }
     }
 
     /** Method that keeps only the red color */
     public void keepOnlyRed() {
         Pixel[][] pixels = this.getPixels2D();
 
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                //zero out all the blue
+                pixels[row][collumn].setBlue(0);
+                pixels[row][collumn].setGreen(0);
+            }
+
+        }
     }
 
     /** Method that keeps only the green color */
     public void keepOnlyGreen() {
         Pixel[][] pixels = this.getPixels2D();
-        // traverse the rows
-        // traverse the columns
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                //zero out all the blue
+                pixels[row][collumn].setBlue(0);
+                pixels[row][collumn].setRed(0);
+            }
+
+        }
 
     }
 
     /** Method that negates the colors in the picture */
     public void negate() {
         Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                //zero out all the blue
+                pixels[row][collumn].setBlue(255-pixels[row][collumn].getBlue());
+                pixels[row][collumn].setRed(255-pixels[row][collumn].getRed());
+                pixels[row][collumn].setGreen(255-pixels[row][collumn].getGreen());
+            }
+
+        }
 
     }
 
     /** Method that makes the picture all shades of gray */
     public void grayscale() {
         Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                //average out all the numbers
+                pixels[row][collumn].setBlue((pixels[row][collumn].getBlue()+pixels[row][collumn].getRed()+pixels[row][collumn].getGreen())/3);
+                pixels[row][collumn].setRed((pixels[row][collumn].getBlue()+pixels[row][collumn].getRed()+pixels[row][collumn].getGreen())/3);
+                pixels[row][collumn].setGreen((pixels[row][collumn].getBlue()+pixels[row][collumn].getRed()+pixels[row][collumn].getGreen())/3);
+            }
+
+        }
+
 
     }
 
@@ -144,17 +214,40 @@ public class Picture extends SimplePicture {
      * Method to fix pictures taken underwater
      */
     public void fixUnderwater() {
-        Pixel[][] grid = this.getPixels2D();
+        Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //traverse the rows
+        for(int row=0; row<height; row++){
+            //traverse collumns
+            for(int collumn = 0; collumn<width; collumn++){
+                
+                pixels[row][collumn].setBlue(pixels[row][collumn].getBlue()*1/4);
+                pixels[row][collumn].setGreen(pixels[row][collumn].getGreen()*1/4);
+                pixels[row][collumn].setRed(pixels[row][collumn].getRed()*5/2);
+                } 
+            }
 
-    }
+        }
+    
 
     /**
      * Method that mirrors the picture around a vertical mirror in the center of the
      * picture from left to right
      */
     public void mirrorVertical() {
-        Pixel[][] picture = this.getPixels2D();
-
+        Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //travrse array
+        for(int row = 0; row<height; row++){
+            //traverse half columns to translate other
+            for(int col = 0; col<width/2; col++){
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[row][width - 1 -col];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /**
@@ -163,6 +256,17 @@ public class Picture extends SimplePicture {
      */
     public void mirrorVerticalRightToLeft() {
         Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //travrse array
+        for(int row = 0; row<height; row++){
+            //traverse half columns to translate other
+            for(int col = 0; col<width/2; col++){
+                Pixel leftPixel = pixels[row][width- 1 -col];
+                Pixel rightPixel = pixels[row][col];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
 
     }
 
@@ -172,6 +276,17 @@ public class Picture extends SimplePicture {
      */
     public void mirrorHorizontal() {
         Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //travrse array
+        for(int row = 0; row<height/2; row++){
+            //traverse half columns to translate other
+            for(int col = 0; col<width; col++){
+                Pixel topPixel = pixels[row][col];
+                Pixel bottomPixel = pixels[height- 1 -row][col];
+                bottomPixel.setColor(topPixel.getColor());
+            }
+        }
 
     }
 
@@ -180,7 +295,18 @@ public class Picture extends SimplePicture {
      * the picture from bottom to top
      */
     public void mirrorHorizontalBotToTop() {
-
+        Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        //travrse array
+        for(int row = 0; row<height/2; row++){
+            //traverse half columns to translate other
+            for(int col = 0; col<width; col++){
+                Pixel topPixel = pixels[row][col];
+                Pixel bottomPixel = pixels[height- 1 -row][col];
+                topPixel.setColor(bottomPixel.getColor());
+            }
+        }
     }
 
     /**
@@ -189,13 +315,22 @@ public class Picture extends SimplePicture {
      */
     public void mirrorDiagonal() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int height = pixels.length;
+        //travrse array
+        for(int row = 0; row<height; row++){
+            //traverse half columns to translate other
+            for(int col = 0; col<height; col++){
+                Pixel mainPixel = pixels[row][col];
+                Pixel flippedPixel = pixels[col][row];
+                mainPixel.setColor(flippedPixel.getColor());
+            }
+        }
     }
 
     /** Mirror just part of a picture of a temple */
     public void mirrorTemple() {
         Pixel[][] pixels = this.getPixels2D();
-
+        
     }
 
     /** Mirror just part of a picture of a snowman */

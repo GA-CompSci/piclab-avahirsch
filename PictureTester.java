@@ -19,11 +19,11 @@ public class PictureTester {
 
         // ------------
         // ACTIVITY 5
-        // testZeroBlue();
-        // testKeepOnlyBlue();
-        // testKeepOnlyRed();
-        // testKeepOnlyGreen();
-        // testNegate();
+        //testZeroBlue();
+        //testKeepOnlyBlue();
+        //testKeepOnlyRed();
+        //testKeepOnlyGreen();
+        //testNegate();
         // testGrayscale();
         // testFixUnderwater();
 
@@ -33,7 +33,7 @@ public class PictureTester {
         // testMirrorVerticalRightToLeft();
         // testMirrorHorizontal();
         // testMirrorHorizontalBotToTop();
-        // testMirrorDiagonal();
+         testMirrorDiagonal();
 
         // ---------------
         // ACTIVITY 7
