@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
+import java.util.function.Consumer;
 
 /**
  * A class that represents a picture. This class inherits from SimplePicture and
@@ -330,17 +331,67 @@ public class Picture extends SimplePicture {
     /** Mirror just part of a picture of a temple */
     public void mirrorTemple() {
         Pixel[][] pixels = this.getPixels2D();
+
+        int rowMax = pixels.length;
+        int colMax = pixels[0].length;
+        //travrse array
+        for(int row = 0; row<rowMax/4; row++){
+            //traverse half columns to translate other
+            for(int col = 0; col<colMax; col++){
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[row][colMax - 1 -col];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
         
     }
 
     /** Mirror just part of a picture of a snowman */
     public void mirrorArms() {
-
+        Pixel[][] pixels = this.getPixels2D();
+        int max = 190;
+        int count = 0;
+        //travrse array
+        for(int row = 161; row<190; row++){
+            //traverse half columns to translate other
+            for(int col = 94; col<172; col++){
+                
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[(max-count)+40][col];
+                rightPixel.setColor(leftPixel.getColor());
+                
+            }
+            count++;
+        }
+        for(int row = 161; row<190; row++){
+            //traverse half columns to translate other
+            
+            for(int col = 239; col<292; col++){
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[(max-count)+67][col];
+                rightPixel.setColor(leftPixel.getColor());
+                
+            }
+            count++;
+        }
     }
 
     /** Mirror just the gull */
     public void mirrorGull() {
-
+        Pixel[][] pixels = this.getPixels2D();
+        //travrse array
+        for(int row = 232; row<322; row++){
+            //traverse half columns to translate other
+            for(int col = 236; col<346; col++){
+                
+                Pixel originalPixel = pixels[row][col];
+                Pixel newPixel = pixels[row-10][col-110];
+                newPixel.setColor(originalPixel.getColor());
+                
+            }
+        }
+        
+         
     }
 
     /**
