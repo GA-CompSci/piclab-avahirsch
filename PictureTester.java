@@ -39,11 +39,11 @@ public class PictureTester {
         // ACTIVITY 7
         // testMirrorTemple();
         // testMirrorArms();
-         testMirrorGull();
+        // testMirrorGull();
 
         // ---------------
         // ACTIVITY 8
-        // testCollage();
+         testCollage();
 
         // ---------------
         // ACTIVITY 9
@@ -173,9 +173,10 @@ public class PictureTester {
 
     /** Method to test the collage method */
     public static void testCollage() {
-        Picture canvas = new Picture("640x480.jpg");
-        canvas.createCollage();
-        canvas.explore();
+        Picture gull = new Picture("seagull.jpg");
+
+        gull.createCollage();
+        gull.explore();
     }
 
     /** Method to test copy */

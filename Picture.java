@@ -420,8 +420,31 @@ public class Picture extends SimplePicture {
 
     /** Method to create a collage of several pictures */
     public void createCollage() {
-        Pixel[][] pixels = this.getPixels2D();
-
+       
+        
+        Picture redMoto = new Picture("redMotorcycle.jpg");
+        Picture flower = new Picture("flower2.jpg");
+        Picture arrow = new Picture ("109618.jpg");
+       
+        arrow = arrow.scale(.1,.1);
+        redMoto = redMoto.scale(.4,.4);
+        flower = flower.scale(.4,.4);
+        
+        this.copy(redMoto,200,400);
+        Pixel[][] Pixels = this.getPixels2D();
+        for(int row = 232; row<298; row++){
+            //traverse half columns to translate other
+            for(int col = 236; col<330; col++){
+                
+                Pixel originalPixel = Pixels[row][col];
+                Pixel newPixel = Pixels[row-10][col+230];
+                newPixel.setColor(originalPixel.getColor());
+                
+            }
+        }
+        this.copy(arrow, 190, 450);
+        this.copy(flower, 240,450);
+        
         this.popArt();
     }
 
