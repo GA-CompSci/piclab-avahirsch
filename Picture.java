@@ -403,10 +403,34 @@ public class Picture extends SimplePicture {
         Pixel leftPixel = null;
         Pixel rightPixel = null;
         Pixel[][] pixels = this.getPixels2D();
+        // store a back up of the original unmodified
         Picture swan = new Picture("swan.jpg");
         Pixel[][] original = swan.getPixels2D();
+        for(int row = 0; row<pixels.length - 1; row++){
+            
+            for(int col = 0; col<pixels[0].length - 1; col++){
 
-    }
+                leftPixel = pixels[row][col];
+
+                rightPixel = pixels[row][col+1];
+
+               Pixel upPixel = pixels[row+1][col];
+
+                Pixel downPixel = pixels[row][col];
+
+                Pixel diagnolPixel = pixels[row+1][col+1];
+
+                if(leftPixel.colorDistance(rightPixel.getColor())>edgeDist*2.95 || downPixel.colorDistance(upPixel.getColor())>edgeDist*2.95 || downPixel.colorDistance(diagnolPixel.getColor())>edgeDist*2.95){
+                    pixels[row][col].setColor(Color.BLACK);
+                } else{
+                    pixels[row][col].setColor(Color.WHITE);
+                }
+                }
+            }
+        }
+
+
+    
 
     /**
      * Method to show large changes in color
@@ -420,8 +444,6 @@ public class Picture extends SimplePicture {
 
     /** Method to create a collage of several pictures */
     public void createCollage() {
-       
-        
         Picture redMoto = new Picture("redMotorcycle.jpg");
         Picture flower = new Picture("flower2.jpg");
         Picture arrow = new Picture ("109618.jpg");
@@ -430,7 +452,9 @@ public class Picture extends SimplePicture {
         redMoto = redMoto.scale(.4,.4);
         flower = flower.scale(.4,.4);
         
+    
         this.copy(redMoto,200,400);
+        
         Pixel[][] Pixels = this.getPixels2D();
         for(int row = 232; row<298; row++){
             //traverse half columns to translate other
@@ -440,10 +464,12 @@ public class Picture extends SimplePicture {
                 Pixel newPixel = Pixels[row-10][col+230];
                 newPixel.setColor(originalPixel.getColor());
                 
+                
             }
         }
-        this.copy(arrow, 190, 450);
-        this.copy(flower, 240,450);
+        
+        this.copy(arrow, 274, 346);
+        this.copy(flower, 260,450);
         
         this.popArt();
     }
@@ -471,6 +497,7 @@ public class Picture extends SimplePicture {
             }
         }
     }
+   
 
     /**
      * copy from the passed fromPic to the specified startRow and startCol in the

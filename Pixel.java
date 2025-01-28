@@ -286,6 +286,7 @@ public class Pixel
   /**
    * Method to set the blue to a new blue value
    * @param value the new value to use
+ * @return 
    */
   public void setBlue(int value)
   {
@@ -364,5 +365,6 @@ public class Pixel
       " green=" + getGreen() + 
       " blue=" + getBlue();
   }
+
 
 }
